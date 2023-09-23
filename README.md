@@ -33,4 +33,3 @@
 `cd server`
 
 `npm start`
-s
