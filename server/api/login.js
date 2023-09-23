@@ -17,7 +17,7 @@ router.use(session({
 }));
 
 // Define the POST route for login
-router.post('/server/api/login', (req, res) => {
+router.post('/', (req, res) => {
     console.log("Received a POST request at /server/api/login");
 
     const { username: user, password: pwd_input } = req.body;
