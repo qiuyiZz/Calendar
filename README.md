@@ -21,3 +21,16 @@
 ### update events ###
 <img width="844" alt="edit event new" src="https://github.com/qiuyiZz/AJAX-Calendar/assets/110421938/97a79fdf-3303-4b3e-87f1-a9967b7cf065">
 
+## How to run:
+- Install nodejs
+  
+**Installs the dependencies:**
+
+`npm install`
+
+**Run:**
+
+`cd server`
+
+`npm start`
+s
