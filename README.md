@@ -1,7 +1,5 @@
-## Demo:
-
 - Designed and developed the interactive event planner calendar using  HTML/CSS, jQuery, Node.js, and Express.
-- - Implemented robust data management with MySQL, allowing users to efficiently create, update, and delete events.
+- Implemented robust data management with MySQL, allowing users to efficiently create, update, and delete events.
 - Deployed the application on an AWS EC2 instance, ensuring high availability and seamless access for users.
 - Leveraged asynchronous operations to provide real-time event updates and enhance user experience.
 
