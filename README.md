@@ -30,6 +30,6 @@
 
 **Run:**
 
-`cd server`
+- cd server
 
 `npm start`
