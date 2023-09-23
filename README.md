@@ -1,9 +1,9 @@
 ## Demo:
-http://ec2-52-207-210-191.compute-1.amazonaws.com/~joy/calendar/index.html
 
-- Developed a calendar application that allows users to register/login, create, edit and delete events, using JavaScript with RESTful APIs to handle front and back-end interactions.
-- Utilized jQuery and AJAX to run PHP scripts to implement asynchronous data CRUD operations and connect to MySQL databases for real-time updates of user information and events.
-- Deployed the application to run on an EC2 instance.
+- Designed and developed the interactive event planner calendar using  HTML/CSS, jQuery, Node.js, and Express.
+- - Implemented robust data management with MySQL, allowing users to efficiently create, update, and delete events.
+- Deployed the application on an AWS EC2 instance, ensuring high availability and seamless access for users.
+- Leveraged asynchronous operations to provide real-time event updates and enhance user experience.
 
 ### Calendar ###
 <img width="1304" alt="initial page without login new" src="https://github.com/qiuyiZz/AJAX-Calendar/assets/110421938/f13b561c-d242-4768-871f-7527c31c3c1e">
