@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="/static/js/calendar.js"></script>
+    <script src="/static/js/calendar.min.js"></script>
+    <script src="/static/main.js"></script>
+    <title>Index</title>
+</head>
+<body>
+
+<div id="calendar">
+<h1>Calendar</h1>
+<div id="calendarPanel">
+    <button id="prevmonthBtn">Prev</button>
+    <button id="nextmonthBtn">Next</button>
+    <h3><span id="currMonth"></span>&nbsp;<span id="currYear"></span></h3>
+</div>
+<button id="showCreateEventBtn">Create Event</button>
+<p id="errorShow"></p>
+<div id="showCalendar">
+
+
+</div>
+</div>
+<div id="userControl">
+    <button id="showLoginBtn">Login</button>
+    <button id="showSignupBtn">Sign up</button>
+    <button id="logoutBtn">Log out</button>
+<div id="loginForm">
+    <h2>Login:</h2>
+    <form class='loginForm'>
+        Username: <input type="text" name="user" id="loginName">
+        <br>
+        <br>
+        Password: <input type="password" name="password" id="loginPwd">
+        <br>
+        <br>
+        <input type="submit" value="Login" id="loginBtn">
+    </form>
+</div>
+<div id="SignupForm">
+    <h2>SignUp:</h2>
+    <form class='SignupForm'>
+        Username: <input type="text" name="user" id="signupName">
+        <br>
+        <br>
+        Password: <input type="password" name="password" id="signupPwd">
+        <br>
+        <br>
+        <input type="submit" value="Sign Up" id="signupBtn">
+    </form>
+    <br>
+</div>
+</div>
+<div id="eventControl">
+<div id="createEventForm">
+    <h2>Creat Event:</h2>
+    <form class='createEventForm'>
+        Title: <input type="text" name="title" id="eventTitle">
+        <br>
+        <br>
+        Date: <input type="date" name="date" id="eventDate">
+        <br>
+        <br>
+        Start Time: <input type="time" name="startTime" id="startTime">
+        <br>
+        <br>
+        End Time: <input type="time" name="endTime" id="endTime">
+        <br>
+        <br>
+        Type: <input type="type" name="type" id="eventType" list="eventTypes">
+        <datalist id="eventTypes">
+                <option value="Important">
+                <option value="Normal">
+                <option value="Urgent">
+        </datalist>
+        <br>
+        <br>
+        <input type="submit" value="createEvent" id="createEventBtn">
+
+    </form>
+</div>
+<div id="editEventForm">
+    <h2>Edit Event:</h2>
+    <form class='editEventForm'>
+        Title: <input type="text" name="title" id="editEventTitle">
+        <br>
+        <br>
+        Date: <input type="date" name="date" id="editEventDate">
+        <br>
+        <br>
+        Start Time: <input type="time" name="startTime" id="editStartTime">
+        <br>
+        <br>
+        End Time: <input type="time" name="endTime" id="editEndTime">
+        <br>
+        <br>
+        Type: <input type="type" name="type" id="editEventType" list="editEventTypes">
+        <datalist id="editEventTypes">
+                <option value="Important">
+                <option value="Normal">
+                <option value="Urgent">
+        </datalist>
+        <br>
+        <br>
+        <input type="submit" value="editEvent" id="editEventBtn">
+        <input type="hidden" name="eventId" id="editEventId">
+        <input type="submit" value="deleteEvent" id="deleteEventBtn">
+    </form>
+   
+    <br>
+</div>
+</div>
+</body>
+</html>
