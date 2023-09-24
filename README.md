@@ -23,6 +23,7 @@
 
 ## How to run:
 - Install node.js
+- Install MySQL and connect
   
 **Installs the dependencies:**
 
