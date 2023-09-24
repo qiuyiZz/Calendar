@@ -18,7 +18,9 @@ router.use(session({
 }));
 
 router.post('/', async (req, res) => {
+    console.log("Received a POST request at /server/api/signUp");
     const { username, password } = req.body;
+    
 
     // Input validations
     if (!username) {
@@ -68,6 +70,7 @@ router.post('/', async (req, res) => {
 
         // Hash the password
         const hashedPassword = await bcrypt.hash(password, 10);
+        console.log("Input Password:", password);
 
         // Insert user into database
         const queryInsert = 'INSERT INTO users (username, pwd) VALUES (?, ?)';

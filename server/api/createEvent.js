@@ -1,17 +1,9 @@
 const express = require('express');
 const router = express.Router(); // Create a router instance instead of a new express app
 const bodyParser = require('body-parser');
-const mysql = require('mysql');
+const mysql = require('./database');
 const session = require('express-session');
 const moment = require('moment-timezone');
-
-
-const db = mysql.createConnection({
-    host: 'localhost',
-    user: 'wustl_inst',
-    password: 'wustl_pass',
-    database: 'events'
-});
 
 // Middleware configurations
 router.use(bodyParser.urlencoded({ extended: true }));
@@ -23,7 +15,8 @@ router.use(session({
 }));
 
 router.post('/', (req, res) => {
-    const { token, title, date, startTime, endTime, type } = req.body;
+    const { title, date, startTime, endTime, type, token} = req.body;
+    console.log("req.body:",req.body)
 
     if (req.session.token && req.session.username && req.session.user_id) {
         if (req.session.token !== token) {
@@ -58,9 +51,11 @@ router.post('/', (req, res) => {
             message: "Invalid date or time inputs."
         });
     }
+    console.log("startMoment, endMoment",startMoment, endMoment);
+    console.log("startMoment.format(format), endMoment.format(format)",startMoment.format(format), endMoment.format(format));
 
     const query = "INSERT INTO events (title, create_date, start_time, end_time, type, user_id) VALUES (?, ?, ?, ?, ?, ?)";
-    db.query(query, [title, date, startMoment.format(format), endMoment.format(format), type, req.session.user_id], (err) => {
+    mysql.query(query, [title, date, startMoment.format(format), endMoment.format(format), type, req.session.user_id], (err) => {
         if (err) {
             return res.json({
                 success: false,

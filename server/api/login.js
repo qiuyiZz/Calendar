@@ -17,28 +17,42 @@ router.use(session({
 }));
 
 // Define the POST route for login
-router.post('/', (req, res) => {
+router.post('/', async(req, res) => {
     console.log("Received a POST request at /server/api/login");
+    console.log("req.body",req.body);
 
+   
     const { username: user, password: pwd_input } = req.body;
 
     // Use a prepared statement
     const query = "SELECT user_id, pwd FROM users WHERE username=?";
+    console.log("SQL Query:", query);
+    console.log("Input Username:", user);
     mysql.query(query, [user], (err, results) => {
-        if (err || results.length === 0) {
+        if (err) {
+            console.error("Database Error:", err);
             return res.json({
                 success: false,
-                message: "Login failed!"
+                message: "Database error"
+            });}
+        if (results.length === 0) {
+            console.log("User not exist");
+            return res.json({
+                success: false,
+                message: "User not exist!"
             });
         }
 
         const { user_id, pwd: pwd_hash } = results[0];
+        console.log("Input Password:", pwd_input);
+        console.log("Hashed Password:", pwd_hash);
 
         // Compare the submitted password to the actual password hash
         if (bcrypt.compareSync(pwd_input, pwd_hash)) {
             req.session.user_id = user_id;
             req.session.username = user;
             req.session.token = require('crypto').randomBytes(32).toString('hex');
+            console.log("req.session in login.js",req.session)
 
             return res.json({
                 success: true,
@@ -48,9 +62,10 @@ router.post('/', (req, res) => {
                 token: req.session.token
             });
         } else {
+            console.log("Password does not match");
             return res.json({
                 success: false,
-                message: "Login failed!"
+                message: "Password does not match!"
             });
         }
     });

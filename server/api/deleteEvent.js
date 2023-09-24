@@ -1,16 +1,9 @@
 const express = require('express');
 const router = express.Router(); // Create a router instance instead of a new express app
 const bodyParser = require('body-parser');
-const mysql = require('mysql');
+const mysql = require('./database');
 const session = require('express-session');
 
-
-const db = mysql.createConnection({
-    host: 'localhost',
-    user: 'wustl_inst',
-    password: 'wustl_pass',
-    database: 'events'
-});
 
 // Middleware configurations
 router.use(bodyParser.urlencoded({ extended: true }));
@@ -41,7 +34,7 @@ router.post('/', (req, res) => {
     const userId = req.session.user_id;
     const query = "DELETE FROM events WHERE event_id=? AND user_id=?";
     
-    db.query(query, [event_id, userId], (err) => {
+    mysql.query(query, [event_id, userId], (err) => {
         if (err) {
             return res.json({
                 success: false,

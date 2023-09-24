@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const app = express();
+
 const PORT = process.env.PORT || 3000;
 const loginRouter = require('./api/login'); // Require the login router
 const logoutRouter = require('./api/logout'); 
@@ -10,6 +11,14 @@ const deleteEventRouter = require('./api/deleteEvent');
 const updateEventRouter = require('./api/updateEvent'); 
 const generateEventsRouter = require('./api/generateEvents'); 
 
+const session = require('express-session');
+
+// Configure express-session
+app.use(session({
+    secret: 'your_secret_key',
+    resave: false,
+    saveUninitialized: true
+}));
 // Use the login router for the '/server/api/login' route
 app.use('/server/api/login', loginRouter);
 // Use the logout router for the /server/api/logout route

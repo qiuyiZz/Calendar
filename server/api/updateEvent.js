@@ -1,16 +1,10 @@
 const express = require('express');
 const router = express.Router(); // Create a router instance instead of a new express app
 const bodyParser = require('body-parser');
-const mysql = require('mysql');
+const mysql = require('./database');
 const session = require('express-session');
 const moment = require('moment-timezone');
 
-const db = mysql.createConnection({
-    host: 'localhost',
-    user: 'wustl_inst',
-    password: 'wustl_pass',
-    database: 'events'
-});
 
 // Middleware configurations
 router.use(bodyParser.urlencoded({ extended: true }));
@@ -59,7 +53,7 @@ router.post('/', (req, res) => {
     }
 
     const query = "UPDATE events SET title=?, create_date=?, start_time=?, end_time=?, type=? WHERE event_id=? AND user_id=?";
-    db.query(query, [title, date, startMoment.format(format), endMoment.format(format), type, event_id, req.session.user_id], (err) => {
+    mysql.query(query, [title, date, startMoment.format(format), endMoment.format(format), type, event_id, req.session.user_id], (err) => {
         if (err) {
             return res.json({
                 success: false,

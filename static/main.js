@@ -224,8 +224,8 @@ function signup() {
     $.post(url, signupdata, function (data, status) {
         //$("showLoginBtn").hide();
          console.log(data);
-         alert("Hi");
-         alert(data);
+         //alert("Hi");
+         //alert(data);
          if (data.success) {
              logIn = true;
              userId = data.user_id;
@@ -247,16 +247,16 @@ function login() {
     let url = "/server/api/login";
     let $form = $(".loginForm");
     
-    let logindata = {
-        "username": $("#loginName").val(),
-        "password": $("#loginPwd").val()
-    };
-    alert($("#loginName").val());
+    let logindata = $.param({
+        'username': $("#loginName").val(),
+        'password': $("#loginPwd").val()
+    });
+    //alert($("#loginName").val());
     $("#errorShow").empty();
     console.log("login!");
-    alert(csrfToken);
+    //alert(csrfToken);
     
-    $.post(url, JSON.stringify(logindata), function (data, status) {
+    $.post(url, logindata, function (data, status) {
        //$("showLoginBtn").hide();
         console.log(data);
         //alert("Hi");
@@ -326,7 +326,7 @@ function createEvent() {
             //generateEvents();
 
         } else {
-            console.log("Error: Event could not be created");
+            console.log("Error: Event could not be created"+ data.message);
             $("#errorShow").text(data.message);
         }
     });
@@ -334,9 +334,9 @@ function createEvent() {
 
 function generateEvents(userId) {
     let url = "/server/api/generateEvents";
-    let gdata = {
+    let gdata = $.param({
         'token': csrfToken
-    };
+    });
     //alert(csrfToken);
     $("#errorShow").empty();
     $('.day_grid p').remove();
@@ -374,7 +374,7 @@ function generateEvents(userId) {
 
             //showEventType();
         } else {
-            console.log("Error: could not generate events");
+            console.log("Error: could not generate events"+ data.message);
         }
     });
 }
@@ -451,7 +451,7 @@ function updateEvent() {
             //generateEvents();
 
         } else {
-            console.log("Error: Event could not be updated");
+            console.log("Error: Event could not be updated"+ data.message);
             $("#errorShow").text(data.message);
         }
     });
@@ -459,10 +459,10 @@ function updateEvent() {
 
 function deleteEvent($div, eventId) {
     let url = "/server/api/deleteEvent";
-    let params = {
-        event_id: eventId,
-        token: csrfToken
-    };
+    let params = $.param({
+        'event_id': eventId,
+        'token': csrfToken
+    });
     $.post(url, params, function (data, status) {
         if (data.success) {
             console.log("Delete event succeeded!");
@@ -471,7 +471,7 @@ function deleteEvent($div, eventId) {
             //generateEvents();
 
         } else {
-            console.log("Error: Event could not be deleted");
+            console.log("Error: Event could not be deleted"+ data.message);
         }
     });
 }
