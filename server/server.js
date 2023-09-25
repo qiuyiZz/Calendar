@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 const app = express();
 
-const PORT = process.env.PORT || 3000;
+const PORT = 3000;
 const loginRouter = require('./api/login'); // Require the login router
 const logoutRouter = require('./api/logout'); 
 const signUpRouter = require('./api/signUp'); 
