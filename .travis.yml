@@ -2,8 +2,10 @@ language: node_js
 node_js:
   - '16'
 
+
 before_install:
-  - openssl aes-256-cbc -K $encrypted_key -iv $encrypted_iv -in deploy_key.enc -out ~/.ssh/id_rsa -d
+  - echo -e "Host ec2-3-87-42-90.compute-1.amazonaws.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+  - echo "$SSH_PRIVATE_KEY" | base64 --decode > ~/.ssh/id_rsa
   - chmod 600 ~/.ssh/id_rsa
   - eval "$(ssh-agent -s)"
   - ssh-add ~/.ssh/id_rsa
