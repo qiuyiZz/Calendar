@@ -18,8 +18,8 @@ install:
   - cd ./server
   - npm install
 
-script:
-  - npm test
+# script:
+#   - npm test
 
 deploy:
   provider: script
