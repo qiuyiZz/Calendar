@@ -22,5 +22,7 @@ deploy:
     - ssh -o StrictHostKeyChecking=no joy@ec2-3-87-42-90.compute-1.amazonaws.com "cd calendar/Calendar/server && git pull && npm install && npm start"
 
 on:
-  branch: main
+  branch:
+    - main
+
 
