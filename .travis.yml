@@ -1,12 +1,20 @@
 language: node_js
 node_js:
   - '18' 
+  before_install:
+  # Install SSH agent
+  - eval "$(ssh-agent -s)"
+  # Add your SSH key to the agent
+  - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+
 install:
   - npm install
 script:
   - npm test 
 deploy:
   provider: script
-  script: chmod +x ./deploy.sh && ./deploy.sh
-  on:
+  skip_cleanup: true
+  script:
+    - ssh -o StrictHostKeyChecking=no joy@ec2-3-87-42-90.compute-1.amazonaws.com "cd /path/to/your/app && git pull && npm install && pm2 restart server.js"
+on:
     branch: main
