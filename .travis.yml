@@ -10,6 +10,7 @@ before_install:
   - ssh-add ~/.ssh/id_rsa
 
 install:
+  - cd ./server
   - npm install
 
 deploy:
