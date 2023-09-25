@@ -13,6 +13,7 @@ install:
   - cd ./server
   - npm install
 
+script: 'true'
 
 deploy:
   provider: script
