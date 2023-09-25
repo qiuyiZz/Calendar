@@ -2,7 +2,6 @@ language: node_js
 node_js:
   - '16'
 
-
 before_install:
   - echo -e "Host ec2-3-87-42-90.compute-1.amazonaws.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
   - echo "$SSH_PRIVATE_KEY" | base64 --decode > ~/.ssh/id_rsa
@@ -10,17 +9,8 @@ before_install:
   - eval "$(ssh-agent -s)"
   - ssh-add ~/.ssh/id_rsa
 
-
-before_cache:
-  - npm cache clean --force
-
 install:
-  - cd ./server
   - npm install
-
-  
-# script:
-#   - npm test
 
 deploy:
   provider: script
