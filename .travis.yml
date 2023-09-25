@@ -19,7 +19,6 @@ install:
   - npm install
 
 script:
-  - cd ./server
   - npm test
 
 deploy:
